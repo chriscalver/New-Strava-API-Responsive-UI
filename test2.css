@@ -5,7 +5,7 @@ body {
     box-sizing: border-box;
     font-family: 'Michroma';
     font-size: 16px;
-    background-color: #FC4C02;
+    background-color: #E10600;
 }
 
 header {
@@ -14,7 +14,7 @@ header {
     top: 0;
     z-index: 1;
     width: 100%;
-    background-color: #FC4C02;
+    background-color: #E10600;
 
 }
 
@@ -28,7 +28,7 @@ header {
 .nav_checkbox {
 
     display: grid;
-    grid-template-columns: 50px 200px 2fr;
+    grid-template-columns: 90px 200px 2fr;
     grid-template-rows: 60px;
     align-items: center;
     padding: 0px 0px;
@@ -234,7 +234,7 @@ header {
 
 .content_section {
     width: 100%;
-    background-color: #FC4C02;
+    background-color: #E10600;
 
 }
 
