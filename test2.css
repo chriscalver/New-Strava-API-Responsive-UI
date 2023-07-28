@@ -6,7 +6,7 @@ body {
     font-family: 'Michroma';
     font-size: 16px;
     background-color: white;
-    background-color: #E10600;
+    /* background-color: #E10600; */
 }
 
 
@@ -20,7 +20,7 @@ header {
     top: 0;
     z-index: 1;
     width: 100%;
-    background-color: #E10600;
+    background-color: #FC4C02;
 
 }
 
