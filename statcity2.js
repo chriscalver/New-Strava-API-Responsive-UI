@@ -22,15 +22,17 @@ async function getAccessTokens() {
         const data = await endpoint.json();
         console.log(data);
 
-
+        const dategrab = data[0].start_date_local;
+        const newdate = dategrab.slice(5,10);
+        document.getElementById('Date').innerHTML = newdate;
 
         const distanceraw = data[0].distance;
         const distanceraw2 = distanceraw / 1000;
         const newDistance = distanceraw2.toFixed(2);
 
-        document.getElementById('ActivtyType').innerHTML = data[2].sport_type;
+        document.getElementById('ActivtyType').innerHTML = data[0].sport_type;
         document.getElementById('ActivityDistance').innerHTML = newDistance + "km";
-        // document.getElementById('ActivityName').innerHTML = data[2].name;  
+        // document.getElementById('ActivityName').innerHTML = data[0].name;  
 
         const movingtimeraw = data[0].moving_time;  // 2145  seconds
         // 7488
@@ -62,7 +64,7 @@ async function getAccessTokens() {
         //    grabs 6                   adds :       grabs 0.55 convs to string then drops the 0. leaving 55 secs   
         document.getElementById('Pace').innerHTML = pace + " mins/km";
         document.getElementById('ActivityTime').innerHTML = movingtimetrimmed.toString() + ":" + "  " + secondstrimmed;
-        //document.getElementById('HeartRate').innerHTML = data[0].average_heartrate;
+        document.getElementById('HeartRate').innerHTML = data[0].average_heartrate + " bpm";
 
 
     }
