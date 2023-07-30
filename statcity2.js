@@ -44,6 +44,8 @@ async function getAccessTokens() {
         // 2.06666667
         const movingtimetrimmed3 = Math.trunc(movingtimetrimmed2);// drops the decimals leaving 0
         // 2  *****hours****
+        const minutes = movingtimetrimmed - movingtimetrimmed3 * 60;
+
         const movingtimedecimal = movingtimeraw2 - movingtimetrimmed;  // 35.75 - 35 = 0.75   drops the whole num
         //124.80 - 124 = 0.7999999
         const movingtimedecimal60 = movingtimedecimal * 60;  // .75 * 60 = 45.0  ***** seconds*****
@@ -63,7 +65,7 @@ async function getAccessTokens() {
         const pace = paceraw2.toString() + ":" + pacerawdecimal2trimmed.toString().slice(2);
         //    grabs 6                   adds :       grabs 0.55 convs to string then drops the 0. leaving 55 secs   
         document.getElementById('Pace').innerHTML = pace + " mins/km";
-        document.getElementById('ActivityTime').innerHTML = movingtimetrimmed.toString() + ":" + "  " + secondstrimmed;
+        document.getElementById('ActivityTime').innerHTML = movingtimetrimmed3.toString() + ":" + minutes + ":" + secondstrimmed;
         document.getElementById('HeartRate').innerHTML = data[0].average_heartrate + " bpm";
 
 
