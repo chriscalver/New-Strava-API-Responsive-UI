@@ -1,5 +1,65 @@
 let AccessCode = "";
 
+
+var d = new Date();
+console.log(d);
+var day = d.getDay(),
+    diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+var newdate = new Date(d.setDate(diff));
+var hour = newdate.getHours();
+var mins = newdate.getMinutes();
+var secs = newdate.getSeconds();
+
+console.log(newdate);
+console.log(hour);
+console.log(mins);
+console.log(secs);
+
+
+newdate.setHours(0);
+newdate.setMinutes(0);
+newdate.setSeconds(0);
+
+
+
+
+console.log(newdate);
+// console.log(hour);
+// console.log(mins);
+// console.log(secs);
+
+//var epoch = newdate.getTime() - newdate.getMilliseconds() / 1000;
+
+
+var myEpoch = newdate.getTime() / 1000.0;
+let Monday = myEpoch.toFixed();
+console.log(myEpoch.toFixed());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Post for getting new Acces Token
 
 async function getAccessTokens() {
@@ -18,23 +78,100 @@ async function getAccessTokens() {
     ///////////////////////////////////////////   gets all activities
 
     async function getActivities() {
-        const endpoint = await fetch(`https://www.strava.com/api/v3/athlete/activities?access_token=${AccessCode}`);
-        const data = await endpoint.json();
+        const endpoint = await fetch(`https://www.strava.com/api/v3/athlete/activities?access_token=${AccessCode} &after=${Monday}`);
+      
+        const endpoint2 = await fetch(`https://www.strava.com/api/v3/athlete/activities?access_token=${AccessCode}`);
+      
+      
+        let data = await endpoint.json();  // activities since monday
+
+        let data2 = await endpoint2.json();   // all activities
         console.log(data);
 
-        const dategrab = data[0].start_date_local;
-        const newdate = dategrab.slice(5,10);
+        data = data.sort((b, a) => {
+            if (a.start_date
+                < b.start_date
+            ) {
+                return -1;
+            }
+        });
+        console.log(data);
+
+
+
+
+
+        let i = 0;
+        let runcount = 0;
+        let ridecount = 0;
+        let runkms = 0;
+        let ridekms = 0;
+        let text = "";
+        for (; data[i];) {
+
+            if (data[i].type == "Run") {
+                runcount++;
+                runkms = runkms + data[i].distance;
+                console.log(runkms);
+            }
+
+            if (data[i].type == "Ride") {
+                ridecount++;
+                ridekms = ridekms + data[i].distance;
+                console.log(ridekms);
+            }
+            // text += data[i] + "<br>";
+            i++;
+        }
+
+        console.log(runcount);
+        document.getElementById("RunNum").innerHTML = runcount;
+
+        console.log(ridecount);
+        document.getElementById("RideNum").innerHTML = ridecount;
+
+        console.log(ridecount);
+        runkms = runkms / 1000;
+        document.getElementById("RunKms").innerHTML = runkms.toFixed(2);
+
+        console.log(ridecount);
+        ridekms = ridekms / 1000;
+        document.getElementById("RideKms").innerHTML = ridekms.toFixed(2);
+
+
+
+
+
+
+
+
+
+
+
+        console.log(data.length);  // number of results
+        document.getElementById('ActNum').innerHTML = data.length;
+        const dategrab = data2[0].start_date_local;
+        const newdate = dategrab.slice(5, 10);
         document.getElementById('Date').innerHTML = newdate;
 
-        const distanceraw = data[0].distance;
+        const distanceraw = data2[0].distance;
         const distanceraw2 = distanceraw / 1000;
         const newDistance = distanceraw2.toFixed(2);
 
-        document.getElementById('ActivtyType').innerHTML = data[0].sport_type;
+        let activity2 = data2[0].sport_type;
+
+        if (data2[0].sport_type == "WeightTraining") {
+            activity2 = "Work Out";
+
+        }
+
+
+
+        document.getElementById('ActivtyType').innerHTML = activity2;
         document.getElementById('ActivityDistance').innerHTML = newDistance + "km";
         // document.getElementById('ActivityName').innerHTML = data[0].name;  
 
-        const movingtimeraw = data[0].moving_time;  // 2145  seconds
+        const movingtimeraw = data2[0].moving_time;  // 2145  seconds
         // 7488
         const movingtimeraw2 = movingtimeraw / 60;  // converts to min.....35.75   .75 = 45 secs   35mins 45 secs
         // 124.80
@@ -62,11 +199,21 @@ async function getAccessTokens() {
         const pacerawdecimal = paceraw - paceraw2;  // leaves the decimal 
         const pacerawdecimal2 = pacerawdecimal * 0.6;  // converts to seconds  leaves 0.553078
         const pacerawdecimal2trimmed = pacerawdecimal2.toFixed(2); // drops to two decimal places 0.55
-        const pace = paceraw2.toString() + ":" + pacerawdecimal2trimmed.toString().slice(2);
+        let pace = paceraw2.toString() + ":" + pacerawdecimal2trimmed.toString().slice(2);
         //    grabs 6                   adds :       grabs 0.55 convs to string then drops the 0. leaving 55 secs   
-        document.getElementById('Pace').innerHTML = pace + " mins/km";
+        
+
+        if (data2[0].sport_type == "WeightTraining") {
+
+            document.getElementById('Pace').innerHTML = "n/a";
+
+        } else {
+            document.getElementById('Pace').innerHTML = pace + " mins/km";
+
+        }
+       // document.getElementById('Pace').innerHTML = pace + " mins/km";
         document.getElementById('ActivityTime').innerHTML = movingtimetrimmed3.toString() + ":" + minutes + ":" + secondstrimmed;
-        document.getElementById('HeartRate').innerHTML = data[0].average_heartrate + " bpm";
+        document.getElementById('HeartRate').innerHTML = data2[0].average_heartrate + " bpm";
 
 
     }
@@ -131,5 +278,58 @@ getCurrentConditions()
     })
     .catch(error => {
         console.log('weather NOT ok');
+        console.error(error)
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function getHourly() {
+
+    const hourlyEndpoint = new URL("http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/55489?apikey=Qc1ej31WWglKsRnGyRNbRjA5atq9ei1H&metric=true");
+    const hourlyResponse = await fetch(hourlyEndpoint);
+    const hourlyData = await hourlyResponse.json();
+    console.log(hourlyData);
+
+
+    let i = 0;
+    while (i < 12) {
+
+        const hour1 = new Date(hourlyData[i].EpochDateTime * 1000);
+        let hour1short = hour1.toLocaleTimeString("default").slice(0, -6);
+        if (hour1short.length == 4) {
+            hour1short = "0" + hour1short;
+            console.log('if gggggggggggexecuted')
+        }
+    
+
+        const Temp = Math.trunc(hourlyData[i].Temperature.Value);
+        const condition = hourlyData[i].IconPhrase;
+        const PoP = hourlyData[i].PrecipitationProbability;
+        console.log("Loooooop");
+        console.log(hour1short.slice(0, -6) + " " + " - " + Temp + "c" + " " + condition + " " + PoP + "%");
+        document.getElementById(`Hour${i}`).innerHTML = hour1short + " " + " - " + Temp + "c" + " " + condition + " " + PoP + "%";
+        i++;
+    }
+
+}
+
+getHourly()
+    .then(response => {
+        console.log('hourly ok');
+    })
+    .catch(error => {
+        console.log('hourly NOT ok');
         console.error(error)
     });

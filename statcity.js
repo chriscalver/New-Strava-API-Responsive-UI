@@ -23,6 +23,9 @@ async function getAccessTokens() {
         console.log(data);
 
 
+        
+
+
 
         const distanceraw = data[0].distance;
         const distanceraw2 = distanceraw / 1000;
@@ -50,7 +53,7 @@ async function getAccessTokens() {
         // 0.4799999999
         const movingtimedecimal60tosecondsrounded = movingtimedecimal60toseconds.toFixed(2); // rounds to 0.48
         const secondstrimmed = movingtimedecimal60tosecondsrounded.toString().slice(2); // drops 0. leaves 48 *******
-        const movingtime = movingtimetrimmed + movingtimedecimal60toseconds;  // 124.48
+        const movingtime = movingtimetrimmed     + movingtimedecimal60toseconds;  // 124.48
         const movingtimefinal = movingtime.toFixed(2);  //rounds off any exrra decimal places  
 
         const paceraw = movingtimeraw2 / newDistance;  //124.80 mins / 18.03 km = 6.921797
@@ -129,3 +132,6 @@ getCurrentConditions()
         console.log('weather NOT ok');
         console.error(error)
     });
+
+
+   

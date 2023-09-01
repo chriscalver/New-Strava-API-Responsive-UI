@@ -137,7 +137,7 @@ header {
 }
 
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 900px) {
 
     body {
 
@@ -145,7 +145,7 @@ header {
         padding: 0;
         box-sizing: border-box;
         font-family: 'Michroma';
-        font-size: 12px;
+        font-size: 14px;
         background-color: #FFFFFF;
     }
 
@@ -158,7 +158,7 @@ header {
 
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 600px) {
 
     .label {
 
@@ -189,7 +189,7 @@ header {
 
     .content_nav li {
 
-        padding: 10px 0px;
+        padding: 15px 0px;
 
     }
 
@@ -221,7 +221,7 @@ header {
 
 
 .content_section {
-    width: 100%;
+    width: 80%;
     background-color: white;
     margin: auto;
 
@@ -353,7 +353,7 @@ header {
     flex-direction: column;
     justify-content: start;
     padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 30px;
+    margin: 0px 0px 0px 50px;
     border: 0px solid #3a921c;
 }
 
@@ -402,7 +402,7 @@ header {
 
 .weathericon {
     border: 0px solid #3a921c;
-    margin: 0px 0px 0px 10px;
+    margin: 0px 0px 0px 25px;
 
 
 }
@@ -459,7 +459,7 @@ header {
     justify-content: center;
     border: 0px solid #3a921c;
     padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 30px;
+    margin: 0px 0px 0px 50px;
 
 }
     
@@ -478,21 +478,13 @@ header {
         text-align: left;
         border: 0px solid #3a921c;
         padding: 0px 0px 0px 0px;
-        margin: 0px 0px 0px 13px;
-        font-size: 16px;
+        margin: 0px 0px 0px 30px;
+        font-size: 10px;
         font-weight: 700;
     }
     
 
-    .selectbox {
 
-        border: 0px solid #3a921c;
-        padding: 0px 0px 0px 0px;
-        margin: 10px 0px 0px 14px;
-        font-size: 14px;
-        font-weight: 700;
-
-    }
 
 
 
@@ -517,7 +509,7 @@ header {
 
 
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 900px) {
 
     .content_section {
         width: 100%;
@@ -529,7 +521,7 @@ header {
         flex-direction: column;
         justify-content: center;
         padding: 0px 0px 0px 0px;
-        margin: 0px 0px 0px 60px;
+        margin: 0px 0px 0px 100px;
         border: 0px solid #3a921c;
     }
     
@@ -548,7 +540,7 @@ header {
         
         justify-content: start;
         padding: 0px 0px 0px 0px;
-        margin: 0px 0px 0px 60px;
+        margin: 0px 0px 0px 100px;
         border: 0px solid #3a921c;
     }
 
@@ -571,24 +563,20 @@ header {
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 50px;
 }
-.accuweatherlogo {
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
-   
+
+
+
+
 }
 
 
 
-}
 
 
 
 
 
-
-
-
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 600px) {
 
     /* hides bottom footer row */
     .item-5 {
@@ -613,7 +601,7 @@ header {
         /* margin: auto; */
 
         display: grid;
-        grid-template-rows: 230px 115px 135px;
+        grid-template-rows: 230px 110px 130px;
         grid-template-columns: 1fr;
         grid-template-areas:
             'myArea1 myArea1'
@@ -647,41 +635,22 @@ header {
         display: flex;
         flex-direction: column;
         border: 0px solid #73AD21;
-        margin: 0px 0px 0px 20px;
+        margin: 0px 0px 0px 40px;
         padding: 0px 0px 0px 0px;
         justify-content: start;
     }
 
-    .topright-maintext {
-        justify-content: center;
-        text-align: left;
-        border: 0px solid #3a921c;
-        padding: 0px 0px 0px 0px;
-        margin: 0px 0px 0px 40px;
-        font-size: 14px;
-        font-weight: 700;
-    }
-
     .accuweatherlogo {
         padding: 0px 0px 0px 0px;
-        margin: 0px 0px 0px 20px;
+        margin: 0px 0px 0px 0px;
         width: 200px;
 
     }
 
     .weathericon {
         padding: 0px 0px 0px 0px;
-        margin: 0px 0px 0px 10px;
 
     }
-    .conditions {
-        padding: 0px 0px 0px 0px;
-        margin: 0px 0px 0px 20px;
-        border: 0px solid #3a921c;
-    }
-
-
-
 
 
     .middleleft {
@@ -689,7 +658,7 @@ header {
         flex-direction: column;
         justify-content: start;
         padding: 0px 0px 0px 0px;
-        margin: 0px 0px 0px 50px;
+        margin: 0px 0px 0px 80px;
         border: 0px solid #3a921c;
     }
 
@@ -702,9 +671,6 @@ header {
 
     }
 
-
-
-
     .middleright {
         grid-area: myArea4;
         flex-direction: column;
@@ -712,7 +678,7 @@ header {
         justify-content: start;
         border: 0px solid #3a921c;
         padding: 0px 0px 0px 0px;
-        margin: 0px 0px 0px 35px;
+        margin: 0px 0px 0px 40px;
     }
 
 
