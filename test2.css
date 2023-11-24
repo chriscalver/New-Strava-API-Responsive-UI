@@ -515,7 +515,7 @@ header {
         width: 100%;
         /* margin: auto; */
         display: grid;
-        grid-template-rows: 230px 115px 135px;
+        grid-template-rows: 230px 165px 135px;
         grid-template-columns: 1fr;
         grid-template-areas:
             'myArea1 myArea1'

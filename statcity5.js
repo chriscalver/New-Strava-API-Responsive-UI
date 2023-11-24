@@ -97,13 +97,11 @@ async function getAccessTokens() {
         });
         console.log(data);
 
-
-
-
-
         let i = 0;
         let runcount = 0;
         let ridecount = 0;
+        let workoutcount = 0;
+        let workoutmins = 0;
         let runkms = 0;
         let ridekms = 0;
         let text = "";
@@ -120,6 +118,15 @@ async function getAccessTokens() {
                 ridekms = ridekms + data[i].distance;
                 console.log(ridekms);
             }
+            if (data[i].type == "Workout") {
+                workoutcount++;
+                workoutmins = workoutmins + data[i].moving_time;
+                //ridekms = ridekms + data[i].distance;
+                console.log(workoutmins);
+            }
+
+            
+
             // text += data[i] + "<br>";
             i++;
         }
@@ -139,6 +146,8 @@ async function getAccessTokens() {
         document.getElementById("RideKms").innerHTML = ridekms.toFixed(2);
 
 
+        document.getElementById("WorkOutNum").innerHTML = workoutcount;
+        document.getElementById("WorkOutMins").innerHTML = workoutmins / 60;
 
 
 
@@ -203,18 +212,28 @@ async function getAccessTokens() {
         //    grabs 6                   adds :       grabs 0.55 convs to string then drops the 0. leaving 55 secs   
         
 
-        if (data2[0].sport_type == "WeightTraining") {
+        if (data2[0].sport_type == "Workout") {
 
             document.getElementById('Pace').innerHTML = "n/a";
 
         } else {
             document.getElementById('Pace').innerHTML = pace + " mins/km";
+            
+        }
+        if (data2[0].has_heartrate == false) {
+            document.getElementById('HeartRate').innerHTML = "n/a";
+        } else {
+
+            document.getElementById('HeartRate').innerHTML = data2[0].average_heartrate + " bpm";
 
         }
+
+        
+
        // document.getElementById('Pace').innerHTML = pace + " mins/km";
         document.getElementById('ActivityTime').innerHTML = movingtimetrimmed3.toString() + ":" + minutes + ":" + secondstrimmed;
-        document.getElementById('HeartRate').innerHTML = data2[0].average_heartrate + " bpm";
-
+    // document.getElementById('HeartRate').innerHTML = data2[0].average_heartrate + " bpm";
+    //document.getElementById('HeartRate').innerHTML = data2[0].has_heartrate;
 
     }
 
